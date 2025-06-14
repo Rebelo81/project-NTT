@@ -1,0 +1,1 @@
+{"timestamp":"2025-06-14T13:32:55.084+00:00","status":400,"error":"Bad Request","message":"Unknown dependency 'eureka-server' check project metadata","path":"/starter.zip"}
