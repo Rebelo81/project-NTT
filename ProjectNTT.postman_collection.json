@@ -1,0 +1,65 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "ProjectNTT - Testes de Segurança",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Via Gateway - Listar Produtos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/produtos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["produtos"]
+        }
+      }
+    },
+    {
+      "name": "Via Gateway - Simular Pedido",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/pedidos/simular",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["pedidos", "simular"]
+        }
+      }
+    },
+    {
+      "name": "Direto no Product Service (deve ser bloqueado)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8100/produtos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8100",
+          "path": ["produtos"]
+        }
+      }
+    },
+    {
+      "name": "Direto no Order Service (deve ser bloqueado)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8200/pedidos/simular",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8200",
+          "path": ["pedidos", "simular"]
+        }
+      }
+    }
+  ]
+} 
