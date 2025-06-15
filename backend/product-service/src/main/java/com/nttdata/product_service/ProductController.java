@@ -6,33 +6,38 @@ import java.util.*;
 @RestController
 @RequestMapping("/produtos")
 public class ProductController {
+    private final ProdutoService service;
+
+    public ProductController(ProdutoService service) {
+        this.service = service;
+    }
+
     @GetMapping
-    public List<String> listarProdutos() {
-        // TODO: Implementar listagem de produtos
-        return Collections.emptyList();
+    public List<Produto> listarProdutos() {
+        return service.listarTodos();
     }
 
     @PostMapping
-    public String criarProduto() {
-        // TODO: Implementar criação de produto
-        return "Produto criado";
+    public Produto criarProduto(@RequestBody Produto produto) {
+        return service.salvar(produto);
     }
 
     @GetMapping("/{id}")
-    public String consultarProduto(@PathVariable Long id) {
-        // TODO: Implementar consulta de produto
-        return "Produto " + id;
+    public Produto consultarProduto(@PathVariable Long id) {
+        return service.buscarPorId(id).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
     }
 
     @PutMapping("/{id}")
-    public String atualizarProduto(@PathVariable Long id) {
-        // TODO: Implementar atualização de produto
-        return "Produto atualizado " + id;
+    public Produto atualizarProduto(@PathVariable Long id, @RequestBody Produto produto) {
+        Produto existente = service.buscarPorId(id).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+        existente.setNome(produto.getNome());
+        existente.setDescricao(produto.getDescricao());
+        existente.setPreco(produto.getPreco());
+        return service.salvar(existente);
     }
 
     @DeleteMapping("/{id}")
-    public String deletarProduto(@PathVariable Long id) {
-        // TODO: Implementar deleção de produto
-        return "Produto deletado " + id;
+    public void deletarProduto(@PathVariable Long id) {
+        service.deletar(id);
     }
 } 
